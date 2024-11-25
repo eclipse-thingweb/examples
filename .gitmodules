@@ -1,0 +1,3 @@
+[submodule "OCX2024/flutter-app"]
+	path = OCX2024/flutter-app
+	url = https://github.com/JKRhb/eclipse_thingweb_app.git
