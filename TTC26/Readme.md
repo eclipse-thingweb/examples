@@ -4,7 +4,16 @@ Demo-related resources
 
 Demo setup explanation follows
 
-## Lorawan and Web of Things
+## LoRaWAN and Web of Things
+
+Devices:
+
+- Adeunis Comfort
+  - Publish interval: 11min
+- Milesight em300 zld
+  - Publish interval: 15 min
+- Netvox R718a
+  - Publish interval: 60 min
 
 ### Keynote
 
