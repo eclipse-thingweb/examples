@@ -1,0 +1,5 @@
+wotpy>=0.16.0
+tornado>=6.0
+pymodbus>=3.0.0
+paho-mqtt>=1.6.0
+eclipse-zenoh>=0.10.0

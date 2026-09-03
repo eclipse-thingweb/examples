@@ -2,19 +2,22 @@ services:
   zenoh-router:
     image: eclipse/zenoh:latest
     container_name: zenoh-router
-    network_mode: "host"
-    volumes:
-      - ./config.json5:/config.json5:ro
-    command: ["-c", "/config.json5"]
+    ports:
+      - "7447:7447"
+      - "7447:7447/udp"
+      - "8000:8000"
     restart: unless-stopped
 
-  zenoh-mqtt-bridge:
-    image: eclipse/zenoh-bridge-mqtt:latest
-    container_name: zenoh-mqtt-bridge
-    network_mode: "host"
-    environment:
-      - RUST_LOG=zenoh=info,zenoh_plugin_mqtt=debug
-    volumes:
-      - ./zenoh-router-config.json5:/config.json5:ro
-    command: ["-c", "/config.json5"]
-    restart: unless-stopped
+  #zenoh-mqtt-bridge:
+  #  image: eclipse/zenoh-bridge-mqtt:latest
+  #  container_name: zenoh-mqtt-bridge
+  #  environment:
+  #    - RUST_LOG=info
+  #  command: [
+  #    "--connect", "tcp/zenoh-router:7447", 
+  #    "--broker", "tcp://plugfest.thingweb.io:8887",
+  #    "--scope", "wotpy"
+  #  ]
+  #  depends_on:
+  #    - zenoh-router
+  #  restart: unless-stopped
