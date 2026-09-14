@@ -1,0 +1,12 @@
+{
+  mode: "client",
+  connect: {
+    endpoints: ["tcp/zenoh-router:7447"]
+  },
+  plugins: {
+    mqtt: {
+      port: "8883",
+      allow: ".*"
+    }
+  }
+}
