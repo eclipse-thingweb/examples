@@ -1,0 +1,87 @@
+
+  {
+    "links": [],
+    "events": {
+      "frameCode": {
+        "forms": [
+          {
+            "href": "zenoh+tcp://localhost:7447/application/d209ff97-929d-46f8-9180-ea2f6c382e90/device/0018b2100000d2ea/event/up/frameCode",
+            "contentType": "application/json",
+            "additionalResponses": [],
+            "op": "subscribeevent"
+          }
+        ],
+        "data": {
+          "oneOf": [],
+          "type": "integer"
+        }
+      },
+      "statusByte": {
+        "forms": [
+          {
+            "href": "zenoh+tcp://localhost:7447/application/d209ff97-929d-46f8-9180-ea2f6c382e90/device/0018b2100000d2ea/event/up/statusByte",
+            "contentType": "application/json",
+            "additionalResponses": [],
+            "op": "subscribeevent"
+          }
+        ],
+        "data": {
+          "oneOf": [],
+          "type": "integer"
+        }
+      },
+      "temperature": {
+        "forms": [
+          {
+            "href": "zenoh+tcp://localhost:7447/application/d209ff97-929d-46f8-9180-ea2f6c382e90/device/0018b2100000d2ea/event/up/temperature",
+            "contentType": "application/json",
+            "additionalResponses": [],
+            "op": "subscribeevent"
+          }
+        ],
+        "@type": "brick:Temperature_Sensor",
+        "data": {
+          "oneOf": [],
+          "minimum": -20,
+          "maximum": 60,
+          "unit": "Cel",
+          "type": "number",
+          "multipleOf": 0.1
+        }
+      },
+      "humidity": {
+        "forms": [
+          {
+            "href": "zenoh+tcp://localhost:7447/application/d209ff97-929d-46f8-9180-ea2f6c382e90/device/0018b2100000d2ea/event/up/humidity",
+            "contentType": "application/json",
+            "additionalResponses": [],
+            "op": "subscribeevent"
+          }
+        ],
+        "@type": "brick:Relative_Humidity_Sensor",
+        "data": {
+          "oneOf": [],
+          "minimum": 0,
+          "maximum": 85,
+          "unit": "%RH",
+          "type": "integer",
+          "multipleOf": 1
+        }
+      }
+    },
+    "description": "Zenoh proxy for the source Thing 'adeunis comfort2'",
+    "title": "adeunis comfort2",
+    "id": "urn:zenoh:proxy:adeunis-comfort2",
+    "securityDefinitions": {
+      "nosec_sc": {
+        "scheme": "nosec"
+      }
+    },
+    "@context": [
+      "https://www.w3.org/2019/wot/td/v1",
+      "https://www.w3.org/2022/wot/td/v1.1"
+    ],
+    "security": "nosec_sc",
+    "properties": {},
+    "actions": {}
+  }

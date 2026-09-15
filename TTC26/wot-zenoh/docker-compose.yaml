@@ -6,7 +6,7 @@ services:
       - "7447:7447"
       - "7446:7446/udp"
     volumes:
-      - ./zenoh-router-config.json5:/config.json5:ro
+      - ./config.json5:/config.json5:ro
     command: ["-c", "/config.json5"]
     restart: unless-stopped
   zenoh-mqtt-bridge:
