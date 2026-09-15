@@ -1,0 +1,94 @@
+  {
+    "links": [],
+    "events": {
+      "battery": {
+        "forms": [
+          {
+            "href": "zenoh+tcp://localhost:7447/application/d209ff97-929d-46f8-9180-ea2f6c382e90/device/0000000000000000/event/up/battery",
+            "contentType": "application/json",
+            "additionalResponses": [],
+            "op": "subscribeevent"
+          }
+        ],
+        "data": {
+          "oneOf": [],
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%",
+          "type": "integer"
+        }
+      },
+      "temperature": {
+        "forms": [
+          {
+            "href": "zenoh+tcp://localhost:7447/application/d209ff97-929d-46f8-9180-ea2f6c382e90/device/24e124136f481063/event/up/temperature",
+            "contentType": "application/json",
+            "additionalResponses": [],
+            "op": "subscribeevent"
+          }
+        ],
+        "@type": "brick:Temperature_Sensor",
+        "data": {
+          "oneOf": [],
+          "minimum": -30,
+          "maximum": 70,
+          "unit": "Cel",
+          "type": "number",
+          "multipleOf": 0.1
+        }
+      },
+      "humidity": {
+        "forms": [
+          {
+            "href": "zenoh+tcp://localhost:7447/application/d209ff97-929d-46f8-9180-ea2f6c382e90/device/24e124136f481063/event/up/humidity",
+            "contentType": "application/json",
+            "additionalResponses": [],
+            "op": "subscribeevent"
+          }
+        ],
+        "@type": "brick:Relative_Humidity_Sensor",
+        "data": {
+          "oneOf": [],
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%RH",
+          "type": "number",
+          "multipleOf": 0.5
+        }
+      },
+      "leakage_status": {
+        "forms": [
+          {
+            "href": "zenoh+tcp://localhost:7447/application/d209ff97-929d-46f8-9180-ea2f6c382e90/device/24e124136f481063/event/up/leakage_status",
+            "contentType": "application/octet-stream",
+            "additionalResponses": [],
+            "op": "subscribeevent"
+          }
+        ],
+        "@type": "brick:Leak_Alarm",
+        "data": {
+          "oneOf": [],
+          "enum": [
+            "normal",
+            "leak"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "description": "Zenoh proxy for the source Thing 'milesight em300 zld'",
+    "title": "milesight em300 zld",
+    "id": "urn:zenoh:proxy:milesight-em300-zld",
+    "securityDefinitions": {
+      "nosec_sc": {
+        "scheme": "nosec"
+      }
+    },
+    "@context": [
+      "https://www.w3.org/2019/wot/td/v1",
+      "https://www.w3.org/2022/wot/td/v1.1"
+    ],
+    "security": "nosec_sc",
+    "properties": {},
+    "actions": {}
+  }

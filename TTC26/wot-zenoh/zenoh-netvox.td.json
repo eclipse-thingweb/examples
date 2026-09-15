@@ -1,0 +1,117 @@
+
+  {
+    "links": [],
+    "events": {
+      "reportType": {
+        "forms": [
+          {
+            "href": "zenoh+tcp://localhost:7447/application/d209ff97-929d-46f8-9180-ea2f6c382e90/device/00137a1000008bd1/event/up/reportType",
+            "contentType": "application/json",
+            "additionalResponses": [],
+            "op": "subscribeevent"
+          }
+        ],
+        "title": "fPort 6 report type",
+        "data": {
+          "oneOf": [],
+          "type": "integer"
+        },
+        "description": "Discriminator byte for fPort 6 uplinks. 0 = startup version report, 1 = periodic status report."
+      },
+      "batteryVoltage": {
+        "forms": [
+          {
+            "href": "zenoh+tcp://localhost:7447/application/d209ff97-929d-46f8-9180-ea2f6c382e90/device/00137a1000008bd1/event/up/batteryVoltage",
+            "contentType": "application/json",
+            "additionalResponses": [],
+            "op": "subscribeevent"
+          }
+        ],
+        "title": "Battery voltage",
+        "data": {
+          "oneOf": [],
+          "minimum": 3.2,
+          "maximum": 3.6,
+          "unit": "V",
+          "type": "number",
+          "multipleOf": 0.1
+        },
+        "description": "Battery voltage in volts (fPort 6, reportType 1). Carried in bits 0-6 of byte 3 as deci-volts; bit 7 is the low-battery flag (see lowBattery). The official codec appends a '(low battery)' string suffix when that flag is set -- not representable in this vocabulary, so it is exposed only as the separate lowBattery property."
+      },
+      "lowBattery": {
+        "forms": [
+          {
+            "href": "zenoh+tcp://localhost:7447/application/d209ff97-929d-46f8-9180-ea2f6c382e90/device/00137a1000008bd1/event/up/lowBattery",
+            "contentType": "application/json",
+            "additionalResponses": [],
+            "op": "subscribeevent"
+          }
+        ],
+        "title": "Low battery flag",
+        "data": {
+          "oneOf": [],
+          "minimum": 0,
+          "maximum": 1,
+          "type": "integer"
+        },
+        "description": "Low-battery indicator carried in bit 7 of byte 3 (fPort 6, reportType 1); 1 = low battery."
+      },
+      "temperature": {
+        "forms": [
+          {
+            "href": "zenoh+tcp://localhost:7447/application/d209ff97-929d-46f8-9180-ea2f6c382e90/device/00137a1000008bd1/event/up/temperature",
+            "contentType": "application/json",
+            "additionalResponses": [],
+            "op": "subscribeevent"
+          }
+        ],
+        "@type": "brick:Temperature_Sensor",
+        "title": "Temperature",
+        "data": {
+          "oneOf": [],
+          "minimum": -40,
+          "maximum": 55,
+          "unit": "Cel",
+          "type": "number",
+          "multipleOf": 0.01
+        },
+        "description": "Measured temperature (fPort 6, reportType 1), signed big-endian hundredths of a degree Celsius."
+      },
+      "humidity": {
+        "forms": [
+          {
+            "href": "zenoh+tcp://localhost:7447/application/d209ff97-929d-46f8-9180-ea2f6c382e90/device/00137a1000008bd1/event/up/humidity",
+            "contentType": "application/json",
+            "additionalResponses": [],
+            "op": "subscribeevent"
+          }
+        ],
+        "@type": "brick:Relative_Humidity_Sensor",
+        "title": "Relative humidity",
+        "data": {
+          "oneOf": [],
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%RH",
+          "type": "number",
+          "multipleOf": 0.01
+        },
+        "description": "Relative humidity (fPort 6, reportType 1), unsigned big-endian hundredths of a percent."
+      }
+    },
+    "description": "Zenoh proxy for the source Thing 'netvox_r718a'",
+    "title": "netvox_r718a",
+    "id": "urn:zenoh:proxy:netvox-r718a",
+    "securityDefinitions": {
+      "nosec_sc": {
+        "scheme": "nosec"
+      }
+    },
+    "@context": [
+      "https://www.w3.org/2019/wot/td/v1",
+      "https://www.w3.org/2022/wot/td/v1.1"
+    ],
+    "security": "nosec_sc",
+    "properties": {},
+    "actions": {}
+  }
