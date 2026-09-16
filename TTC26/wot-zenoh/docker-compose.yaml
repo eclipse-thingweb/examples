@@ -21,3 +21,44 @@ services:
       - ./zenoh-bridge-config.json5:/config.json5:ro
     command: ["-c", "/config.json5"]
     restart: unless-stopped
+
+  wotpy-proxy:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    image: wotpy-modbus:latest
+    container_name: wotpy-proxy
+    depends_on:
+      - zenoh-router
+    ports:
+      - "9292:9292"
+    command:
+      - python
+      - zenoh_proxy.py
+      - --source-td
+      - ./thing-td.json
+      - --router
+      - tcp/zenoh-router:7447
+      - --servient-id
+      - modbus-proxy
+      - --catalogue-port
+      - "9292"
+    restart: unless-stopped
+  wotpy-dashboard:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    image: wotpy-modbus:latest
+    container_name: wotpy-dashboard
+    depends_on:
+      - zenoh-router
+    ports:
+      - "8899:8899"
+    command:
+      - python
+      - dashboard.py
+      - --router
+      - tcp/zenoh-router:7447
+      - --port
+      - "8899"
+    restart: unless-stopped
