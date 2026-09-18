@@ -39,6 +39,8 @@ services:
       - ./sentron-pac.td.jsonld
       - --thing-title 
       - "SIEMENS - SENTRON 7KM PAC4200"
+      - --max-properties
+      - "25"
       - --router
       - tcp/zenoh-router:7447
       - --servient-id
