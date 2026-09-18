@@ -36,7 +36,9 @@ services:
       - python
       - zenoh_proxy.py
       - --source-td
-      - ./thing-td.json
+      - ./sentron-pac.td.jsonld
+      - --thing-title 
+      - "SIEMENS - SENTRON 7KM PAC4200"
       - --router
       - tcp/zenoh-router:7447
       - --servient-id
