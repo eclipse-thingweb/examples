@@ -36,7 +36,9 @@ services:
       - python
       - zenoh_proxy.py
       - --source-td
-      - ./thing-td.json
+      - ./sentron-pac.td.jsonld
+      - --max-properties
+      - "35"
       - --router
       - tcp/zenoh-router:7447
       - --servient-id
