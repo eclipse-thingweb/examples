@@ -2,22 +2,26 @@ import zenoh
 import json
 import time
 import logging
+import struct
 from pymodbus.client import ModbusTcpClient
 
-MODBUS_HOST = '192.168.20.76'
-MODBUS_PORT = 1502
+MODBUS_HOST = '192.168.100.110'
+MODBUS_PORT = 502
 UNIT_ID = 1
-START_ADDRESS = 2
-QUANTITY = 4
+START_ADDRESS = 1
+QUANTITY = 2
 ZENOH_KEY = 'test/modbus'
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger("logger")
 
+def to_float32(registers):
+    return struct.unpack('>f', struct.pack('>HH', *registers))[0]
+
 def main():
     logger.info("Opening Zenoh session...")
     conf = zenoh.Config()
-    conf.insert_json5("listen/endpoints", '["tcp/127.0.0.1:7447"]')
+    conf.insert_json5("listen/endpoints", '["tcp/localhost:7447"]')
     
     z_session = zenoh.open(conf)
 
@@ -36,12 +40,13 @@ def main():
             )
 
             if not response.isError():
+                parsed = to_float32(response.registers)
                 data = {
                     "timestamp": time.time(),
-                    "values": response.registers
+                    "values": parsed
                 }
                 z_session.put(ZENOH_KEY, json.dumps(data))
-                logger.info(f"Published: {response.registers}")
+                logger.info(f"Published: {parsed}")
             else:
                 logger.error(f"Modbus Error: {response}")
 
